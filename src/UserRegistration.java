@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.regex.*;
+
 public class UserRegistration {
     public static boolean isValidFirstName(String firstName) {
         String regex = "^[A-Z][a-zA-Z]{2,}$";
@@ -19,6 +20,10 @@ public class UserRegistration {
     public static boolean isValidMobileNumber(String mobile) {
         String regex = "^\\d{2} \\d{10}$";
         return Pattern.matches(regex, mobile);
+    }
+    public static boolean isValidPassword(String password){
+        String regex = "^.{8,}$";
+        return Pattern.matches(regex, password);
     }
 
     public static void main(String[] args) throws PatternSyntaxException{
@@ -51,6 +56,13 @@ public class UserRegistration {
             System.out.println("Valid Mobile Number");
         }else {
             System.out.println("Invalid Mobile Number follow the format");
+        }
+        System.out.println("Enter Password: Minimum 8 characters ");
+        String password = sc.nextLine();
+        if (isValidPassword(password)){
+            System.out.println("Password is Valid");
+        }else {
+            System.out.println("Invalid Password");
         }
         sc.close();
     }
