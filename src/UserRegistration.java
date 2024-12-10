@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.regex.*;
+
 public class UserRegistration {
     public static boolean isValidFirstName(String firstName) {
         String regex = "^[A-Z][a-zA-Z]{2,}$";
@@ -66,3 +67,5 @@ public class UserRegistration {
         sc.close();
     }
 }
+
+
