@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.util.regex.*;
-
-public class UserRegistration {
+public class User {
     public static boolean isValidFirstName(String firstName) {
         String regex = "^[A-Z][a-zA-Z]{2,}$";
         return Pattern.matches(regex, firstName);
@@ -22,7 +21,7 @@ public class UserRegistration {
         return Pattern.matches(regex, mobile);
     }
     public static boolean isValidPassword(String password){
-        String regex = "^(?=.*[A-Z]).{8,}$";
+        String regex = "^[A-Za-z\\d@$!%*?&]{8,}$";
         return Pattern.matches(regex, password);
     }
 
@@ -57,7 +56,7 @@ public class UserRegistration {
         }else {
             System.out.println("Invalid Mobile Number follow the format");
         }
-        System.out.println("Enter Password: Minimum 8 characters with at least one uppercase");
+        System.out.println("Enter Password: Minimum 8 characters with at least one uppercase and at least one numeric number");
         String password = sc.nextLine();
         if (isValidPassword(password)){
             System.out.println("Password is Valid");
@@ -67,5 +66,3 @@ public class UserRegistration {
         sc.close();
     }
 }
-
-
