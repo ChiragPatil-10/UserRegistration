@@ -16,6 +16,11 @@ public class UserRegistration {
         return Pattern.matches(regex, email);
     }
 
+    public static boolean isValidMobileNumber(String mobile) {
+        String regex = "^\\d{2} \\d{10}$";
+        return Pattern.matches(regex, mobile);
+    }
+
     public static void main(String[] args) throws PatternSyntaxException{
         System.out.println("Welcome to User Registration Problem");
         Scanner sc = new Scanner(System.in);
@@ -40,6 +45,13 @@ public class UserRegistration {
         }else {
             System.out.println("Invalid Mail");
         }
-
+        System.out.println("Enter Mobile Number: format (91 84xxxxxx89)");
+        String mobile = sc.nextLine();
+        if (isValidMobileNumber(mobile)){
+            System.out.println("Valid Mobile Number");
+        }else {
+            System.out.println("Invalid Mobile Number follow the format");
+        }
+        sc.close();
     }
 }
