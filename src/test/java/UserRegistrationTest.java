@@ -6,61 +6,65 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserRegistrationTest {
     @Test
-    public void isValidFirstName_HappyCase() {
-        assertTrue(UserRegistration.isValidFirstName("Chirag"));
+    public void isValidFirstName_HappyCase() throws InvalidFirstNameException {
+        UserRegistration.isValidFirstName("Chirag");
     }
 
     @Test
-    public void isValidFirstName_SadCase() {
-        assertFalse(UserRegistration.isValidFirstName("tony"));
-        assertFalse(UserRegistration.isValidFirstName("ton"));
-        assertFalse(UserRegistration.isValidFirstName("t"));
+    public void isValidFirstName_SadCase()  {
+        assertThrows(InvalidFirstNameException.class, () -> UserRegistration.isValidFirstName("tony"));
+        assertThrows(InvalidFirstNameException.class, () -> UserRegistration.isValidFirstName("ton"));
+        assertThrows(InvalidFirstNameException.class, () -> UserRegistration.isValidFirstName("t"));
     }
 
     @Test
-    public void isValidLastName_HappyCase() {
-        assertTrue(UserRegistration.isValidLastName("Patil"));
+    public void isValidLastName_HappyCase() throws InvalidLastNameException {
+        UserRegistration.isValidLastName("Patil");
     }
 
     @Test
     public void isValidLastName_SadCase() {
-        assertFalse(UserRegistration.isValidLastName("pat"));
-        assertFalse(UserRegistration.isValidLastName("p"));
-        assertFalse(UserRegistration.isValidLastName("patil"));
+        assertThrows(InvalidLastNameException.class, () -> UserRegistration.isValidLastName("pa"));
+        assertThrows(InvalidLastNameException.class, () -> UserRegistration.isValidLastName("P"));
+        assertThrows(InvalidLastNameException.class, () -> UserRegistration.isValidLastName("patil"));
     }
 
     @Test
-    public void isValidMail_HappyCase() {
-        assertTrue(UserRegistration.isValidMail("patilchirag192k@gmail.com"));
+    public void isValidMail_HappyCase() throws InvalidMailException {
+        UserRegistration.isValidMail("patilchirag192k@gmail.com");
     }
 
     @Test
-    public void isValidMail_SadCase() {
-        assertFalse(UserRegistration.isValidMail("pat@b1"));
-        assertFalse(UserRegistration.isValidMail("abc.xyz@.com"));
-        assertFalse(UserRegistration.isValidMail("abc.xyz@bl@co.in"));
+    public void isValidMail_SadCase()  {
+        assertThrows(InvalidMailException.class, () -> UserRegistration.isValidMail("pat@b1"));
+        assertThrows(InvalidMailException.class, () -> UserRegistration.isValidMail("pat.xyz@.com"));
+        assertThrows(InvalidMailException.class, () -> UserRegistration.isValidMail("patil.xyz@bl@com.in"));
     }
 
     @Test
-    public void isValidMobileNumber_HappyCase() {
-        assertTrue(UserRegistration.isValidMobileNumber("91 9579588662"));
+    public void isValidMobileNumber_HappyCase() throws InvalidMobileException {
+        UserRegistration.isValidMobileNumber("91 9579588662");
     }
 
     @Test
     public void isValidMobileNumber_SadCase() {
-        assertFalse(UserRegistration.isValidMobileNumber("9195795886622"));
-        assertFalse(UserRegistration.isValidMobileNumber("91-957958862"));
-        assertFalse(UserRegistration.isValidMobileNumber("91 95795"));
+        assertThrows(InvalidMobileException.class, () -> UserRegistration.isValidMobileNumber("9195795886622"));
+        assertThrows(InvalidMobileException.class, () -> UserRegistration.isValidMobileNumber("91-957958862"));
+        assertThrows(InvalidMobileException.class, () -> UserRegistration.isValidMobileNumber("91 95795"));
     }
 
     @Test
-    public void isValidPassword_HappyCase() {
-
-        assertTrue(UserRegistration.isValidPassword("Dracarys@123"));
+    public void isValidPassword_HappyCase() throws InvalidPasswordException {
+        UserRegistration.isValidPassword("Dracarys@123");
     }
+
     @Test
     public void isValidPassword_SadCase() {
-        assertFalse(UserRegistration.isValidPassword("dracarys@1"));
+        assertThrows(InvalidPasswordException.class, () -> UserRegistration.isValidPassword("dracarys@1"));
+        assertThrows(InvalidPasswordException.class, () -> UserRegistration.isValidPassword("draca@"));
+        assertThrows(InvalidPasswordException.class, () -> UserRegistration.isValidPassword("dracs1"));
+        assertThrows(InvalidPasswordException.class, () -> UserRegistration.isValidPassword("dracary"));
+        assertThrows(InvalidPasswordException.class, () -> UserRegistration.isValidPassword("drac@1"));
     }
 
     @ParameterizedTest
